@@ -7,14 +7,32 @@
     <title>Weather</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Merriweather&family=Sacramento&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Merriweather&family=Sacramento&display=swap" rel="stylesheet">
 </head>
 
+    <input type="text" id="city-input">
+    <button id="search-btn">Search</button>
+
+<script id="first-template" type="text/x-handlebars-template">
+   
+    {{#each allCityData}}
+    <div id="city">
+        <p id="name">{{this.name}}</p>
+        <p id="temprature">{{this.temprature}}</p>
+        <p id="conditions">{{this.conditions}}</p>
+        <img src="{{this.conditionPic}}" alt="condition.jpg" id="image">
+        <p id="wind">{{this.wind}}</p>
+        <button id="save-btn">Save</button>
+        <button id="remove-btn">Remove</button>
+    </div>
+  {{/each}}
+  
+  </script>
 <body>
     <script src="./jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <script src="TempManager.js"></script>
+    <script src="Renderer.js"></script>
     <script src="main.js"></script>
 </body>
 

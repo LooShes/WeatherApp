@@ -1,28 +1,40 @@
 const express = require('express')
+const axios = require('axios')
+const City = require('../model/City')
+
 const router = express.Router()
 
-router.get(`/cities`, function (req, res) {
-    console.log(res)
+router.get(`/city/:cityName`, async (req, res) => {
+    let cityName = req.params.cityName
+    const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=ec035401d1d40d6f5bb07d9588812996`)
+
+    let city = {
+        name: response.data.name,
+        temprature: response.data.main.temp,
+        condition: response.data.weather[0].description,
+        conditionPic: response.data.weather[0].icon,  //http://openweathermap.org/img/wn/${icon}@2x.png
+        wind: response.data.wind.speed           
+    }
+
+    res.send(city)
 })
 
-router.post('/city', function (req, res) {
-    
+router.get(`/cities`, async (req, res) => {
+    let  cityData = await City.find({})
+    res.send(cityData)
 })
 
-router.delete(`/city/:cityName`, function (req, res) {
-   
+router.post('/city', async (req, res) => {
+    let city = new City(req.body)
+    let saveInDB = await city.save()
+    console.log(city)
+    res.send(saveInDB.name)
 })
 
-module.exports = router
-
-
-
-
-
-
-
-
-
-
+router.delete(`/city/:cityName`, async (req, res) => {
+    const cityName = req.params.cityName
+    let deletedFromDB = await City.findOneAndDelete({name: cityName})
+    res.send(deletedFromDB.name)
+})
 
 module.exports = router
