@@ -12,10 +12,10 @@ router.get(`/city/:cityName`, async (req, res) => {
         name: response.data.name,
         temprature: response.data.main.temp,
         condition: response.data.weather[0].description,
-        conditionPic: response.data.weather[0].icon,  //http://openweathermap.org/img/wn/${icon}@2x.png
+        conditionPic: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
         wind: response.data.wind.speed           
     }
-
+    
     res.send(city)
 })
 

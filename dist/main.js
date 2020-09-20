@@ -2,34 +2,30 @@ let manager = new TempManager()
 let renderer = new Renderer()
 
 const loadPage = async () => {
-    let citiesDataFromDB = manager.getDataFromDB()
-    await renderer.renderData(citiesDataFromDB)
+    await manager.getDataFromDB()
+    renderer.renderData(manager.cityData)
 }
 
-const handleSearch = async () => {
+const handleSearch = async (userInput) => {
+    console.log(userInput)
+    await manager.getCityDataFromExtAPI(userInput)
+    console.log(manager.cityData)
+    renderer.renderData(manager.cityData)
+}
+
+$(`#search-btn`).on("click", async function () {
     let userInput = $(`#city-input`).val()
-    let city = await manager.getCityDataFromExtAPI(userInput)
-    renderer.renderSingleCity(city)
-}
+    await handleSearch(userInput)
+})
 
-const onClickSearch = async () => {
-    await $(`#search-btn`).on("click", function () {
-        this.handleSearch()
-    })
-}
+$(`#save-btn`).on("click", async function () {
+    let saveCity = this.closest(`#name`).text()
+    await manager.saveCity(saveCity)
+})
 
-const onClickSave = async () => {
-    await $(`#save-btn`).on("click", function () {
-        let saveCity = this.closest(`#name`).text()
-        manager.saveCity(saveCity)
-    })
-}
-
-const onClickRemove = async () => {
-    await $(`#remove-btn`).on("click", function () {
-        let removeCity = this.closest(`#name`).text()
-        manager.removeCity(removeCity)
-    })
-}
+$(`#remove-btn`).on("click", async function () {
+    let removeCity = this.closest(`#name`).text()
+    await manager.removeCity(removeCity)
+})
 
 loadPage()

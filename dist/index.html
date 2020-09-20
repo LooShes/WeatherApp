@@ -14,20 +14,18 @@
     <button id="search-btn">Search</button>
 
 <script id="first-template" type="text/x-handlebars-template">
-   
     {{#each allCityData}}
     <div id="city">
-        <p id="name">{{this.name}}</p>
-        <p id="temprature">{{this.temprature}}</p>
-        <p id="conditions">{{this.conditions}}</p>
-        <img src="{{this.conditionPic}}" alt="condition.jpg" id="image">
-        <p id="wind">{{this.wind}}</p>
+        <p id="name">{{name}}</p>
+        <img src="{{conditionPic}}" alt="condition.jpg" id="image">
+        <p id="temprature">Temperature: {{temprature}}, <span id="conditions">{{condition}}</span></p>
+        <p id="wind">Wind: {{wind}}m/s</p>
         <button id="save-btn">Save</button>
         <button id="remove-btn">Remove</button>
     </div>
   {{/each}}
-  
   </script>
+  <div id="container"></div>
 <body>
     <script src="./jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>

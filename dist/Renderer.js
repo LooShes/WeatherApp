@@ -2,10 +2,11 @@ class Renderer {
     constructor(){}
 
     renderData(allCityData){
-        const source = $('#first-template').html()
+        const source   = $("#first-template").html()
         const template = Handlebars.compile(source)
-        const newHTML = template({city: allCityData})
-        $("#city").empty()
-        $('#city').append(newHTML)
+        console.log({allCityData})
+        const newHTML = template({allCityData})
+        $("#container").empty()
+        $('#container').append(newHTML)
     }
 }

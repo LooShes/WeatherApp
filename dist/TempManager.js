@@ -15,10 +15,9 @@ class TempManager {
     }
 
     async getCityDataFromExtAPI(cityName){
-        let city = await $.get(`/city/:${cityName}`)
+        let city = await $.get(`/city/${cityName}`)
         this.cityData.push(city)
-
-        return(this.cityData)
+        console.log(this.cityData)
     }
 
     async saveCity(cityName){

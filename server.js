@@ -6,15 +6,15 @@ const api = require('./server/routes/api')
 
 const app = express()
 
-app.use(express.static(path.join(__dirname, '/node_modules')))
-app.use(express.static(path.join(__dirname, '/dist')))
+app.use(express.static(path.join(__dirname, './node_modules')))
+app.use(express.static(path.join(__dirname, './dist')))
 app.use(bodyParser.json())
 
 app.use('/', api)
 
 mongoose.connect('mongodb://localhost/weather', {
     useUnifiedTopology: true,
-    useNewUrlParser: true,
+    useNewUrlParser: true
 }).then(() => console.log(`DB Connected!`))
 
 const port = 3000
