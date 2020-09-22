@@ -25,15 +25,15 @@ router.get(`/cities`, async (req, res) => {
 })
 
 router.post('/city', async (req, res) => {
-    let city = new City(req.body)
-    let saveInDB = await city.save()
-    console.log(city)
-    res.send(saveInDB.name)
+    console.log(req.body)
+    let city =  await new City(req.body)
+    city.save()
+    res.send(city.name)
 })
 
 router.delete(`/city/:cityName`, async (req, res) => {
     const cityName = req.params.cityName
-    let deletedFromDB = await City.findOneAndDelete({name: cityName})
+    let deletedFromDB = await cities.findOneAndDelete({name: cityName})
     res.send(deletedFromDB.name)
 })
 

@@ -18,14 +18,18 @@ $(`#search-btn`).on("click", async function () {
     await handleSearch(userInput)
 })
 
-$(`#save-btn`).on("click", async function () {
-    let saveCity = this.closest(`#name`).text()
+$(`#container`).on("click", `#save-btn`, async function () {
+    let saveCity = $(this).closest(`#city`).find(`#name`).text()
     await manager.saveCity(saveCity)
+    console.log(manager.cityData)
+    renderer.renderData(manager.cityData)
 })
 
-$(`#remove-btn`).on("click", async function () {
-    let removeCity = this.closest(`#name`).text()
+$(`#container`).on("click", `#remove-btn`, async function () {
+    let removeCity = $(this).closest(`#city`).find(`#name`).text()
+    console.log(removeCity)
     await manager.removeCity(removeCity)
+    renderer.renderData(manager.cityData)
 })
 
 loadPage()
