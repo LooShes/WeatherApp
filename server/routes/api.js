@@ -33,8 +33,7 @@ router.post('/city', async (req, res) => {
 
 router.delete(`/city/:cityName`, async (req, res) => {
     const cityName = req.params.cityName
-    let deletedFromDB = await cities.findOneAndDelete({name: cityName})
-    res.send(deletedFromDB.name)
+    await City.findOneAndDelete({name: cityName})
 })
 
 module.exports = router
