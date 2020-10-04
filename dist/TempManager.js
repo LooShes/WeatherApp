@@ -29,14 +29,15 @@ class TempManager {
     }
 
     async removeCity(cityName) {
+        let cityIndex = 0
         for(let city of this.cityData){
-            if(city.name === cityName){
-                const cityIndex = this.cityData.indexOf(city.name)
-                console.log(cityIndex)
-                this.cityData.splice(cityIndex, 1)
+            if(city.name != cityName){
+                //const cityIndex = this.cityData.indexOf(city.name)
+                cityIndex++
             }
         }
-
+        console.log(cityIndex)
+        this.cityData.splice(cityIndex, 1)
         await $.ajax({
             url: `/city/${cityName}`,
             method: "DELETE",
