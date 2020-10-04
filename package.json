@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "review": "node node_modules/elevation-pr/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +13,7 @@
     "axios": "^0.20.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.2",
+    "elevation-pr": "^1.4.0",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "handlebars": "^4.7.6",
